@@ -63,6 +63,20 @@ d1.duplicated().any()
 
 d1.shape
 
+#top 10 handsets used by the customers
+top_10_handsets = d1['Handset Type'].value_counts().nlargest(10)
+top_10_handsets
+
+#top 3 handset manufacturers
+top_3_manufacturers = d1['Handset Manufacturer'].value_counts().nlargest(3)
+top_3_manufacturers
+
+#top 5 handsets per top 3 handset manufacturer
+top_5_handsets_per_manufacturer = {}
+for manufacturer in top_3_manufacturers.index:
+  top_5_handsets_per_manufacturer[manufacturer] = d1[d1['Handset Manufacturer'] == manufacturer]['Handset Type'].value_counts().nlargest(5)
+
+
 #number of XDR  Unique Sessions
 #let us consider each user has unique MSISDN number
 
